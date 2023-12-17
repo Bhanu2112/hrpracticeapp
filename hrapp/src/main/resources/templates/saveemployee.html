@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Thymeleaf Form Example</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<style>
+			.card{
+				width: fit-content;
+				border : 1px solid rgb(106, 106, 234)
+			
+			}
+			.container-fluid{
+				padding-left: 35%;
+			}
+			.fin{
+				border : 1px solid rgb(106, 106, 234)
+			}
+			
+		</style>
+</head>
+
+<body>
+
+
+	<h2>Thymeleaf Form Example</h2>
+
+
+	<div class="container-fluid align-items-center justify-content-center">
+		<div class="card">
+			<div class="card-body">
+				<form th:action="@{/employee/save}" method="post" th:object="${employee}">
+					<div class="row mb-2">
+							<div class="col">
+							<input type="number" class="form-control fin" placeholder="Employee Id" th:field="*{employeeId}">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="First name" th:field="*{firstName}">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Last name" th:field="*{lastName}">
+						</div>
+
+					</div>
+					<div class="row mb-2">
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Phone Number"
+								th:field="*{phoneNumber}">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Hire Date" th:field="*{hireDate}">
+						</div>
+
+					</div>
+					<div class="row mb-2">
+						<div class="col">
+							<input type="email" class="form-control fin" placeholder="Email" th:field="*{email}">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Job Id" th:field="*{job.jobId}">
+						</div>
+
+					</div>
+					<div class="row mb-2">
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Salary" th:field="*{salary}">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control fin" placeholder="Commission Pct"
+								th:field="*{commissionPct}">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col">
+							<div th:object="${managerObj}">
+								<select class="form-select" aria-label="Default select example" th:field="*{manager.employeeId}">
+									<option selected>Choose Manager</option>
+									<option th:each="manager : ${managers}" th:value="${manager.employeeId}" th:text="${manager.Name}" ></option>
+									
+								  </select>
+							</div>
+						
+						</div>
+						<div class="col">
+						<div th:object="${departmentObj}">
+							<select class="form-select" aria-label="Default select example" th:field="*{department.departmentId}">
+								<option selected>Choose Department</option>
+								<option th:each="department : ${departments}" th:value="${department.departmentId}" th:text="${department.departmentName}"></option>
+								
+							  </select>
+						</div>
+							
+						</div>
+					</div>
+
+
+			</div>
+
+			<div class="row">
+				<div class="col text-center mb-2">
+					<button class="btn btn-primary" type="submit">Submit</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	</div>
+
+
+</body>
+
+</html>
